@@ -22,7 +22,7 @@ import re
 from typing import Dict, Callable, Mapping, MutableMapping, MutableSequence, Optional, Iterable, Iterator, Sequence, Tuple, Type, Union, cast
 import warnings
 
-from google.storage_v2 import gapic_version as package_version
+from storage_v2_py.google.storage_v2 import gapic_version as package_version
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -53,8 +53,8 @@ from google.iam.v1 import policy_pb2  # type: ignore
 from google.longrunning import operations_pb2 # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
-from google.storage_v2.services.storage import pagers
-from google.storage_v2.types import storage
+from storage_v2_py.google.storage_v2. services.storage import pagers
+from storage_v2_py.google.storage_v2. types import storage
 from .transports.base import StorageTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import StorageGrpcTransport
 from .transports.grpc_asyncio import StorageGrpcAsyncIOTransport

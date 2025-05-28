@@ -53,11 +53,11 @@ from google.oauth2 import service_account
 from google.protobuf import duration_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
-from google.storage_v2.services.storage import StorageAsyncClient
-from google.storage_v2.services.storage import StorageClient
-from google.storage_v2.services.storage import pagers
-from google.storage_v2.services.storage import transports
-from google.storage_v2.types import storage
+from storage_v2_py.google.storage_v2. services.storage import StorageAsyncClient
+from storage_v2_py.google.storage_v2. services.storage import StorageClient
+from storage_v2_py.google.storage_v2. services.storage import pagers
+from storage_v2_py.google.storage_v2. services.storage import transports
+from storage_v2_py.google.storage_v2. types import storage
 from google.type import date_pb2  # type: ignore
 from google.type import expr_pb2  # type: ignore
 import google.auth

@@ -13,68 +13,68 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from google.storage import gapic_version as package_version
+from storage_v2_py.google.storage import gapic_version as package_version
 
 __version__ = package_version.__version__
 
 
-from google.storage_v2.services.storage.client import StorageClient
-from google.storage_v2.services.storage.async_client import StorageAsyncClient
+from storage_v2_py.google.storage_v2. services.storage.client import StorageClient
+from storage_v2_py.google.storage_v2. services.storage.async_client import StorageAsyncClient
 
-from google.storage_v2.types.storage import AppendObjectSpec
-from google.storage_v2.types.storage import BidiReadHandle
-from google.storage_v2.types.storage import BidiReadObjectError
-from google.storage_v2.types.storage import BidiReadObjectRedirectedError
-from google.storage_v2.types.storage import BidiReadObjectRequest
-from google.storage_v2.types.storage import BidiReadObjectResponse
-from google.storage_v2.types.storage import BidiReadObjectSpec
-from google.storage_v2.types.storage import BidiWriteHandle
-from google.storage_v2.types.storage import BidiWriteObjectRedirectedError
-from google.storage_v2.types.storage import BidiWriteObjectRequest
-from google.storage_v2.types.storage import BidiWriteObjectResponse
-from google.storage_v2.types.storage import Bucket
-from google.storage_v2.types.storage import BucketAccessControl
-from google.storage_v2.types.storage import CancelResumableWriteRequest
-from google.storage_v2.types.storage import CancelResumableWriteResponse
-from google.storage_v2.types.storage import ChecksummedData
-from google.storage_v2.types.storage import CommonObjectRequestParams
-from google.storage_v2.types.storage import ComposeObjectRequest
-from google.storage_v2.types.storage import ContentRange
-from google.storage_v2.types.storage import CreateBucketRequest
-from google.storage_v2.types.storage import CustomerEncryption
-from google.storage_v2.types.storage import DeleteBucketRequest
-from google.storage_v2.types.storage import DeleteObjectRequest
-from google.storage_v2.types.storage import GetBucketRequest
-from google.storage_v2.types.storage import GetObjectRequest
-from google.storage_v2.types.storage import ListBucketsRequest
-from google.storage_v2.types.storage import ListBucketsResponse
-from google.storage_v2.types.storage import ListObjectsRequest
-from google.storage_v2.types.storage import ListObjectsResponse
-from google.storage_v2.types.storage import LockBucketRetentionPolicyRequest
-from google.storage_v2.types.storage import MoveObjectRequest
-from google.storage_v2.types.storage import Object
-from google.storage_v2.types.storage import ObjectAccessControl
-from google.storage_v2.types.storage import ObjectChecksums
-from google.storage_v2.types.storage import ObjectRangeData
-from google.storage_v2.types.storage import Owner
-from google.storage_v2.types.storage import ProjectTeam
-from google.storage_v2.types.storage import QueryWriteStatusRequest
-from google.storage_v2.types.storage import QueryWriteStatusResponse
-from google.storage_v2.types.storage import ReadObjectRequest
-from google.storage_v2.types.storage import ReadObjectResponse
-from google.storage_v2.types.storage import ReadRange
-from google.storage_v2.types.storage import ReadRangeError
-from google.storage_v2.types.storage import RestoreObjectRequest
-from google.storage_v2.types.storage import RewriteObjectRequest
-from google.storage_v2.types.storage import RewriteResponse
-from google.storage_v2.types.storage import ServiceConstants
-from google.storage_v2.types.storage import StartResumableWriteRequest
-from google.storage_v2.types.storage import StartResumableWriteResponse
-from google.storage_v2.types.storage import UpdateBucketRequest
-from google.storage_v2.types.storage import UpdateObjectRequest
-from google.storage_v2.types.storage import WriteObjectRequest
-from google.storage_v2.types.storage import WriteObjectResponse
-from google.storage_v2.types.storage import WriteObjectSpec
+from storage_v2_py.google.storage_v2. types.storage import AppendObjectSpec
+from storage_v2_py.google.storage_v2. types.storage import BidiReadHandle
+from storage_v2_py.google.storage_v2. types.storage import BidiReadObjectError
+from storage_v2_py.google.storage_v2. types.storage import BidiReadObjectRedirectedError
+from storage_v2_py.google.storage_v2. types.storage import BidiReadObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import BidiReadObjectResponse
+from storage_v2_py.google.storage_v2. types.storage import BidiReadObjectSpec
+from storage_v2_py.google.storage_v2. types.storage import BidiWriteHandle
+from storage_v2_py.google.storage_v2. types.storage import BidiWriteObjectRedirectedError
+from storage_v2_py.google.storage_v2. types.storage import BidiWriteObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import BidiWriteObjectResponse
+from storage_v2_py.google.storage_v2. types.storage import Bucket
+from storage_v2_py.google.storage_v2. types.storage import BucketAccessControl
+from storage_v2_py.google.storage_v2. types.storage import CancelResumableWriteRequest
+from storage_v2_py.google.storage_v2. types.storage import CancelResumableWriteResponse
+from storage_v2_py.google.storage_v2. types.storage import ChecksummedData
+from storage_v2_py.google.storage_v2. types.storage import CommonObjectRequestParams
+from storage_v2_py.google.storage_v2. types.storage import ComposeObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import ContentRange
+from storage_v2_py.google.storage_v2. types.storage import CreateBucketRequest
+from storage_v2_py.google.storage_v2. types.storage import CustomerEncryption
+from storage_v2_py.google.storage_v2. types.storage import DeleteBucketRequest
+from storage_v2_py.google.storage_v2. types.storage import DeleteObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import GetBucketRequest
+from storage_v2_py.google.storage_v2. types.storage import GetObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import ListBucketsRequest
+from storage_v2_py.google.storage_v2. types.storage import ListBucketsResponse
+from storage_v2_py.google.storage_v2. types.storage import ListObjectsRequest
+from storage_v2_py.google.storage_v2. types.storage import ListObjectsResponse
+from storage_v2_py.google.storage_v2. types.storage import LockBucketRetentionPolicyRequest
+from storage_v2_py.google.storage_v2. types.storage import MoveObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import Object
+from storage_v2_py.google.storage_v2. types.storage import ObjectAccessControl
+from storage_v2_py.google.storage_v2. types.storage import ObjectChecksums
+from storage_v2_py.google.storage_v2. types.storage import ObjectRangeData
+from storage_v2_py.google.storage_v2. types.storage import Owner
+from storage_v2_py.google.storage_v2. types.storage import ProjectTeam
+from storage_v2_py.google.storage_v2. types.storage import QueryWriteStatusRequest
+from storage_v2_py.google.storage_v2. types.storage import QueryWriteStatusResponse
+from storage_v2_py.google.storage_v2. types.storage import ReadObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import ReadObjectResponse
+from storage_v2_py.google.storage_v2. types.storage import ReadRange
+from storage_v2_py.google.storage_v2. types.storage import ReadRangeError
+from storage_v2_py.google.storage_v2. types.storage import RestoreObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import RewriteObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import RewriteResponse
+from storage_v2_py.google.storage_v2. types.storage import ServiceConstants
+from storage_v2_py.google.storage_v2. types.storage import StartResumableWriteRequest
+from storage_v2_py.google.storage_v2. types.storage import StartResumableWriteResponse
+from storage_v2_py.google.storage_v2. types.storage import UpdateBucketRequest
+from storage_v2_py.google.storage_v2. types.storage import UpdateObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import WriteObjectRequest
+from storage_v2_py.google.storage_v2. types.storage import WriteObjectResponse
+from storage_v2_py.google.storage_v2. types.storage import WriteObjectSpec
 
 __all__ = ('StorageClient',
     'StorageAsyncClient',

@@ -16,7 +16,7 @@
 import abc
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Union
 
-from google.storage_v2 import gapic_version as package_version
+from storage_v2_py.google.storage_v2 import gapic_version as package_version
 
 import google.auth  # type: ignore
 import google.api_core
@@ -31,7 +31,7 @@ from google.iam.v1 import iam_policy_pb2  # type: ignore
 from google.iam.v1 import policy_pb2  # type: ignore
 from google.longrunning import operations_pb2 # type: ignore
 from google.protobuf import empty_pb2  # type: ignore
-from google.storage_v2.types import storage
+from storage_v2_py.google.storage_v2. types import storage
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 

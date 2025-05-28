@@ -34,7 +34,7 @@ from google.iam.v1 import iam_policy_pb2  # type: ignore
 from google.iam.v1 import policy_pb2  # type: ignore
 from google.longrunning import operations_pb2 # type: ignore
 from google.protobuf import empty_pb2  # type: ignore
-from google.storage_v2.types import storage
+from storage_v2_py.google.storage_v2. types import storage
 from .base import StorageTransport, DEFAULT_CLIENT_INFO
 
 try:

@@ -24,7 +24,7 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object, None]  # type: ignore
     OptionalAsyncRetry = Union[retries_async.AsyncRetry, object, None]  # type: ignore
 
-from google.storage_v2.types import storage
+from storage_v2_py.google.storage_v2. types import storage
 
 
 class ListBucketsPager:
