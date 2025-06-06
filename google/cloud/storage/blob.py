@@ -78,6 +78,9 @@ from google.cloud.storage.retry import DEFAULT_RETRY_IF_ETAG_IN_JSON
 from google.cloud.storage.retry import DEFAULT_RETRY_IF_GENERATION_SPECIFIED
 from google.cloud.storage.fileio import BlobReader
 from google.cloud.storage.fileio import BlobWriter
+from storage_v2_py.google.storage_v2.services.storage.client import StorageClient as StorageGapicClient
+from storage_v2_py.google import storage_v2
+import time
 
 
 _DEFAULT_CONTENT_TYPE = "application/octet-stream"
@@ -1491,24 +1494,47 @@ class Blob(_PropertyMixin):
         """
         with create_trace_span(name="Storage.Blob.downloadAsBytes"):
             string_buffer = BytesIO()
+            # string_buffer
 
-            self._prep_and_do_download(
-                string_buffer,
-                client=client,
-                start=start,
-                end=end,
-                raw_download=raw_download,
-                if_etag_match=if_etag_match,
-                if_etag_not_match=if_etag_not_match,
-                if_generation_match=if_generation_match,
-                if_generation_not_match=if_generation_not_match,
-                if_metageneration_match=if_metageneration_match,
-                if_metageneration_not_match=if_metageneration_not_match,
-                timeout=timeout,
-                checksum=checksum,
-                retry=retry,
-            )
+            # if client is None:
+            #     client = self._require_client(client)
+            if isinstance(self.client, StorageGapicClient):
+                self._prep_and_do_download_grpc(string_buffer)
+            else:
+                self._prep_and_do_download(
+                    string_buffer,
+                    client=client,
+                    start=start,
+                    end=end,
+                    raw_download=raw_download,
+                    if_etag_match=if_etag_match,
+                    if_etag_not_match=if_etag_not_match,
+                    if_generation_match=if_generation_match,
+                    if_generation_not_match=if_generation_not_match,
+                    if_metageneration_match=if_metageneration_match,
+                    if_metageneration_not_match=if_metageneration_not_match,
+                    timeout=timeout,
+                    checksum=checksum,
+                    retry=retry,
+                )
             return string_buffer.getvalue()
+    
+    def _prep_and_do_download_grpc(self, string_buffer):
+        bucket='projects/_/buckets/chandrasiri-pysdk-grpc'
+
+        start = time.time()
+        stream = self.client.read_object(request=storage_v2.ReadObjectRequest(bucket=bucket, object='ask_chandrasiri_before_deleting'))
+        total = 0
+        iter_count = 0
+        for response in stream:
+            total += len(response.checksummed_data.content)
+            string_buffer.write(response.checksummed_data.content)
+            iter_count += 1
+        print('iter_count', iter_count)
+
+        print("download ran in {} ns and got {} bytes".format(time.time() - start, total))
+
+
 
     def download_as_string(
         self,
@@ -4311,8 +4337,8 @@ class Blob(_PropertyMixin):
                 "ifMetagenerationMatch": if_metageneration_match,
             }
             retry = retry.get_retry_policy_if_conditions_met(query_params=query_params)
-
         client = self._require_client(client)
+        print('tye of client', type(client))
 
         download_url = self._get_download_url(
             client,

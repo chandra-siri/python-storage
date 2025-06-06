@@ -18,6 +18,8 @@ import sys
 
 # [START storage_file_download_into_memory]
 from google.cloud import storage
+from storage_v2_py.google import storage_v2
+import time
 
 
 def download_blob_into_memory(bucket_name, blob_name):
@@ -53,3 +55,20 @@ if __name__ == "__main__":
         bucket_name=sys.argv[1],
         blob_name=sys.argv[2],
     )
+    transport_cls = storage_v2.StorageClient.get_transport_class()
+    channel = transport_cls.create_channel(attempt_direct_path=True)
+    transport = transport_cls(channel=channel)
+    client = storage_v2.StorageClient(transport=transport)
+
+    bucket='projects/_/buckets/chandrasiri-pysdk-grpc'
+
+    start = time.monotonic_ns()
+    stream = client.read_object(request=storage_v2.ReadObjectRequest(bucket=bucket, object='gapic'))
+    total = 0
+    iter_count = 0
+    for response in stream:
+        total += len(response.checksummed_data.content)
+        iter_count += 1
+    print('iter_count', iter_count)
+
+    print("download ran in {} ns and got {} bytes".format(time.monotonic_ns() - start, total))

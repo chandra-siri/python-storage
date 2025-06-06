@@ -26,6 +26,7 @@ import google.api_core.client_options
 from google.auth.credentials import AnonymousCredentials
 
 from google.api_core import page_iterator
+from google.api_core.client_info import ClientInfo
 from google.cloud._helpers import _LocalStack
 from google.cloud.client import ClientWithProject
 from google.cloud.exceptions import NotFound
