@@ -35,12 +35,16 @@ def upload_blob_from_memory(bucket_name, contents, destination_blob_name):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
+    blob.content_language = "es"
+    blob.content_type = "text/plain"
+    blob.metadata = {"foo": "bar"}
 
     blob.upload_from_string(contents)
 
     print(
         f"{destination_blob_name} with contents {contents} uploaded to {bucket_name}."
     )
+
 
 # [END storage_file_upload_from_memory]
 

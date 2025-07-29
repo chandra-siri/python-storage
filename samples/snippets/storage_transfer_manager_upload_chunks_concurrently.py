@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import sys
+
 
 # [START storage_transfer_manager_upload_chunks_concurrently]
 def upload_chunks_concurrently(
@@ -52,6 +54,14 @@ def upload_chunks_concurrently(
     )
 
     print(f"File {source_filename} uploaded to {destination_blob_name}.")
+
+
+if __name__ == "__main__":
+    upload_chunks_concurrently(
+        bucket_name=sys.argv[1],
+        source_filename=sys.argv[2],
+        destination_blob_name=sys.argv[3],
+    )
 
 
 # [END storage_transfer_manager_upload_chunks_concurrently]

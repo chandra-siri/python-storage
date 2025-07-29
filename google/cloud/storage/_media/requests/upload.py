@@ -67,7 +67,9 @@ class SimpleUpload(_request_helpers.RequestsMixin, _upload.SimpleUpload):
         Returns:
             ~requests.Response: The HTTP response returned by ``transport``.
         """
-        method, url, payload, headers = self._prepare_request(data, content_type)
+        method, url, payload, headers = self._prepare_request(
+            data, content_type
+        )
 
         # Wrap the request business logic in a function to be retried.
         def retriable_request():
@@ -79,7 +81,9 @@ class SimpleUpload(_request_helpers.RequestsMixin, _upload.SimpleUpload):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
 
 class MultipartUpload(_request_helpers.RequestsMixin, _upload.MultipartUpload):
@@ -158,7 +162,9 @@ class MultipartUpload(_request_helpers.RequestsMixin, _upload.MultipartUpload):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
 
 class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
@@ -414,6 +420,18 @@ class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
         Returns:
             ~requests.Response: The HTTP response returned by ``transport``.
         """
+        # metadata["crc32c"] = "MrDp6Q=="
+        metadata["crc32c"] = "0d4xMw=="
+        print("#" * 50)
+        print(
+            "initiate ResumableUpload:",
+            metadata,
+            content_type,
+            total_bytes,
+            stream_final,
+        )
+        print("#" * 50)
+
         method, url, payload, headers = self._prepare_initiate_request(
             stream,
             metadata,
@@ -424,15 +442,29 @@ class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
 
         # Wrap the request business logic in a function to be retried.
         def retriable_request():
+            print("#" * 50)
+            print(
+                "initiate ResumableUpload method, url, payload, headers",
+                method,
+                url,
+                payload,
+                headers,
+            )
+            print("#" * 50)
             result = transport.request(
                 method, url, data=payload, headers=headers, timeout=timeout
             )
+            print("#" * 50)
+            print("initiate ResumableUpload Result", result)
+            print("#" * 50)
 
             self._process_initiate_response(result)
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
     def transmit_next_chunk(
         self,
@@ -514,6 +546,9 @@ class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
                 does not match or is not available.
         """
         method, url, payload, headers = self._prepare_request()
+        print(
+            "this is the request for transmit next chunk", method, url, headers
+        )
 
         # Wrap the request business logic in a function to be retried.
         def retriable_request():
@@ -525,7 +560,9 @@ class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
     def recover(self, transport):
         """Recover from a failure and check the status of the current upload.
@@ -563,7 +600,9 @@ class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
 
 class XMLMPUContainer(_request_helpers.RequestsMixin, _upload.XMLMPUContainer):
@@ -650,7 +689,9 @@ class XMLMPUContainer(_request_helpers.RequestsMixin, _upload.XMLMPUContainer):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
     def finalize(
         self,
@@ -688,7 +729,9 @@ class XMLMPUContainer(_request_helpers.RequestsMixin, _upload.XMLMPUContainer):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
     def cancel(
         self,
@@ -728,7 +771,9 @@ class XMLMPUContainer(_request_helpers.RequestsMixin, _upload.XMLMPUContainer):
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )
 
 
 class XMLMPUPart(_request_helpers.RequestsMixin, _upload.XMLMPUPart):
@@ -759,13 +804,22 @@ class XMLMPUPart(_request_helpers.RequestsMixin, _upload.XMLMPUPart):
         method, url, payload, headers = self._prepare_upload_request()
 
         # Wrap the request business logic in a function to be retried.
+
         def retriable_request():
+            print("#" * 50)
+            print("XML MPU part requests details", method, url, headers)
+            print("#" * 50)
             result = transport.request(
                 method, url, data=payload, headers=headers, timeout=timeout
             )
 
             self._process_upload_response(result)
+            print("#" * 50)
+            print("XML MPU part result details", method, url, headers)
+            print("#" * 50)
 
             return result
 
-        return _request_helpers.wait_and_retry(retriable_request, self._retry_strategy)
+        return _request_helpers.wait_and_retry(
+            retriable_request, self._retry_strategy
+        )

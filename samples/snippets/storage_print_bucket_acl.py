@@ -26,7 +26,7 @@ def print_bucket_acl(bucket_name):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
 
-    for entry in bucket.acl:
+    for entry in bucket.default_object_acl:
         print(f"{entry['role']}: {entry['entity']}")
 
 
