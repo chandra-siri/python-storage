@@ -74,7 +74,10 @@ def lint(session):
     session.run("flake8", "google", "tests")
 
 
-@nox.session(python="3.14")
+# name=format creates alias.
+# needed for https://github.com/googleapis/synthtool/blob/6702a344265de050bceaff45d62358bb0023ba7d/synthtool/languages/python.py#L183
+@nox.session(python=DEFAULT_PYTHON_VERSION, name="format")
+@nox.session(python=DEFAULT_PYTHON_VERSION)
 def blacken(session):
     """Run black.
 
